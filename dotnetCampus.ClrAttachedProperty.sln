@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.ClrAttachedProperty", "src\dotnetCampus.ClrAttachedProperty\dotnetCampus.ClrAttachedProperty.csproj", "{6B29EAAB-BD2E-4363-9549-4354030C96BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetCampus.ClrAttachedProperty.Tests", "tests\dotnetCampus.ClrAttachedProperty.Tests\dotnetCampus.ClrAttachedProperty.Tests.csproj", "{A08607EF-C1BF-4977-980E-C97FE39BAF7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B29EAAB-BD2E-4363-9549-4354030C96BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B29EAAB-BD2E-4363-9549-4354030C96BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B29EAAB-BD2E-4363-9549-4354030C96BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B29EAAB-BD2E-4363-9549-4354030C96BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08607EF-C1BF-4977-980E-C97FE39BAF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08607EF-C1BF-4977-980E-C97FE39BAF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08607EF-C1BF-4977-980E-C97FE39BAF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08607EF-C1BF-4977-980E-C97FE39BAF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5EC3366-B848-4102-BB16-E37A7A1A7A93}
+	EndGlobalSection
+EndGlobal

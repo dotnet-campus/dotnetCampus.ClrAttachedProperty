@@ -1,0 +1,1 @@
+# dotnetCampus.ClrAttachedProperty
