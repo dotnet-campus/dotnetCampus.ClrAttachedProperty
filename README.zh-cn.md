@@ -4,14 +4,13 @@
 |--|--|
 |![](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/workflows/.NET%20Core/badge.svg)|[![](https://img.shields.io/nuget/v/dotnetCampus.ClrAttachedProperty.svg)](https://www.nuget.org/packages/dotnetCampus.ClrAttachedProperty)|
 
-This library supports adding any property to any objects.
+给任意对象附加上任意额外的属性
 
+## 安装 NuGet 包
 
-## Install NuGet package
+这个库提供了两个不同的包可以给大家安装。其中一个包是传统的 Dll 引用包。另一个包是使用 [SourceYard](https://github.com/dotnet-campus/SourceYard) 打出来的源代码包，源代码包安装之后将会引用源代码
 
-Two different libraries are provided for installation.
-
-### Install the traditionary NuGet Dll library
+### 安装传统 NuGet Dll 库
 
 .NET CLI:
 
@@ -25,7 +24,8 @@ PackageReference:
 <PackageReference Include="dotnetCampus.ClrAttachedProperty" Version="1.0.0" />
 ```
 
-### Install the [SourceYard](https://github.com/dotnet-campus/SourceYard) NuGet source code
+### 安装源代码包
+
 
 .NET CLI:
 
@@ -42,9 +42,9 @@ PackageReference:
 </PackageReference>
 ```
 
-## Usage
+## 使用方法
 
-We can attach properies to any object by extension method
+可以给任意的对象附加任意类型的属性，同时可以从对象里面获取附加的属性
 
 ```csharp
 using dotnetCampus.ClrAttachedProperty;
@@ -57,8 +57,3 @@ using dotnetCampus.ClrAttachedProperty;
         }
 ```
 
-## Contributing
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/pulls)
-
-If you would like to contribute, feel free to create a [Pull Request](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/pulls), or give us [Bug Report](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/issues/new).
