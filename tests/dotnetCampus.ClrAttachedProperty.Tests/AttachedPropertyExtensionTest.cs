@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
@@ -9,6 +10,38 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
         [ContractTestCase]
         public void SetGetProperty()
         {
+            "设置可空值类型，可以获取到相对对象".Test(() =>
+            {
+                // Arrange
+                var obj = new object();
+                int? ageProperty = 10;
+                var name = "age";
+
+                // Action
+                obj.SetAttachedProperty(name, ageProperty);
+
+                // Assert
+                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int?>(name));
+                Assert.IsNull(obj.GetAttachedProperty<int>(name));
+            });
+
+            "两个属性名相同，但是类型不相同的属性，可以独立存取和读取".Test(() =>
+            {
+                // Arrange
+                var obj = new object();
+                int ageProperty = 10;
+                var name = "age";
+                var fooProperty = new List<int>();
+
+                // Action
+                obj.SetAttachedProperty(name, ageProperty);
+                obj.SetAttachedProperty(name, fooProperty);
+
+                // Assert
+                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int>(name));
+                Assert.AreEqual(fooProperty, obj.GetAttachedProperty<List<int>>(name));
+            });
+
             "使用泛形版本的设置附加属性，可以使用非泛形版本读取到相同的对象".Test(() =>
             {
                 // Arrange
