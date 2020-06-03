@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace dotnetCampus.ClrAttachedProperty
+﻿namespace dotnetCampus.ClrNamedAttachedProperty
 {
     /// <summary>
     /// 给任意对象添加属性的扩展支持
     /// </summary>
-    public static class AttachedPropertyExtension
+    public static class NamedAttachedPropertyExtension
     {
         /// <summary>
         /// 设置属性，存入实际的 属性名 是 ${typeof(<typeparamref name="T"/>).FullName}.{<paramref name="name"/>}
@@ -13,10 +11,10 @@ namespace dotnetCampus.ClrAttachedProperty
         /// <param name="obj"></param>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        public static void SetAttachedProperty<T>(this object obj, string name, T value)
+        public static void SetNamedAttachedProperty<T>(this object obj, string name, T value)
         {
             var actualName = $"{typeof(T).FullName}.{name}";
-            AttachedProperty.SetAttachedProperty(obj, actualName, value);
+            NamedAttachedProperty.SetNamedAttachedProperty(obj, actualName, value);
         }
 
         /// <summary>
@@ -25,17 +23,17 @@ namespace dotnetCampus.ClrAttachedProperty
         /// <param name="obj"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static T GetAttachedProperty<T>(this object obj, string name)
+        public static T GetNamedAttachedProperty<T>(this object obj, string name)
         {
             var actualName = $"{typeof(T).FullName}.{name}";
-            var attachedProperty = AttachedProperty.GetAttachedProperty(obj, actualName);
+            var attachedProperty = NamedAttachedProperty.GetNamedAttachedProperty(obj, actualName);
             if (attachedProperty != null)
             {
                 return (T)attachedProperty;
             }
 
             // 如果是空，需要考虑兼容，尝试获取 name 是否存在
-            attachedProperty = AttachedProperty.GetAttachedProperty(obj, name);
+            attachedProperty = NamedAttachedProperty.GetNamedAttachedProperty(obj, name);
 
             if (attachedProperty is T t)
             {

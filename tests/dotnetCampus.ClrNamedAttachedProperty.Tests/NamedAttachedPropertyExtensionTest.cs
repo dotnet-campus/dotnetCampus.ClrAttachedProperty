@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
-namespace dotnetCampus.ClrAttachedProperty.Tests
+namespace dotnetCampus.ClrNamedAttachedProperty.Tests
 {
     [TestClass]
-    public class AttachedPropertyExtensionTest
+    public class NamedAttachedPropertyExtensionTest
     {
         [ContractTestCase]
         public void SetGetProperty()
@@ -18,10 +18,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var name = "age";
 
                 // Action
-                obj.SetAttachedProperty(name, ageProperty);
+                obj.SetNamedAttachedProperty(name, ageProperty);
 
                 // Assert
-                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int?>(name));
+                Assert.AreEqual(ageProperty, obj.GetNamedAttachedProperty<int?>(name));
             });
 
             "设置可空值类型，值不是空，可以获取到相对对象".Test(() =>
@@ -32,10 +32,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var name = "age";
 
                 // Action
-                obj.SetAttachedProperty(name, ageProperty);
+                obj.SetNamedAttachedProperty(name, ageProperty);
 
                 // Assert
-                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int?>(name));
+                Assert.AreEqual(ageProperty, obj.GetNamedAttachedProperty<int?>(name));
             });
 
             "两个属性名相同，但是类型不相同的属性，可以独立存取和读取".Test(() =>
@@ -47,12 +47,12 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var fooProperty = new List<int>();
 
                 // Action
-                obj.SetAttachedProperty(name, ageProperty);
-                obj.SetAttachedProperty(name, fooProperty);
+                obj.SetNamedAttachedProperty(name, ageProperty);
+                obj.SetNamedAttachedProperty(name, fooProperty);
 
                 // Assert
-                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int>(name));
-                Assert.AreEqual(fooProperty, obj.GetAttachedProperty<List<int>>(name));
+                Assert.AreEqual(ageProperty, obj.GetNamedAttachedProperty<int>(name));
+                Assert.AreEqual(fooProperty, obj.GetNamedAttachedProperty<List<int>>(name));
             });
 
             "使用泛形版本的设置附加属性，可以使用非泛形版本读取到相同的对象".Test(() =>
@@ -64,10 +64,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var actualName = $"{typeof(int).FullName}.{name}";
 
                 // Action
-                obj.SetAttachedProperty(name, property);
+                obj.SetNamedAttachedProperty(name, property);
 
                 // Assert
-                Assert.AreEqual(property, obj.GetAttachedProperty(actualName));
+                Assert.AreEqual(property, obj.GetNamedAttachedProperty(actualName));
             });
 
             "使用非泛形版本的设置附加属性，可以使用泛形版本读取到相同的对象".Test(() =>
@@ -78,10 +78,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var name = "age";
 
                 // Action
-                obj.SetAttachedProperty(name, (object)property);
+                obj.SetNamedAttachedProperty(name, (object)property);
 
                 // Assert
-                Assert.AreEqual(property, obj.GetAttachedProperty<int>(name));
+                Assert.AreEqual(property, obj.GetNamedAttachedProperty<int>(name));
             });
 
             "可以使用泛形版本设置和获取到相同对象".Test(() =>
@@ -92,10 +92,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var name = "age";
 
                 // Action
-                obj.SetAttachedProperty(name, property);
+                obj.SetNamedAttachedProperty(name, property);
 
                 // Assert
-                Assert.AreEqual(property, obj.GetAttachedProperty<int>(name));
+                Assert.AreEqual(property, obj.GetNamedAttachedProperty<int>(name));
             });
         }
     }

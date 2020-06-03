@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\dotnetCampus.ClrAttachedProperty\dotnetCampus.ClrAttachedProperty.csproj" />
+    <ProjectReference Include="..\..\src\dotnetCampus.ClrNamedAttachedProperty\dotnetCampus.ClrNamedAttachedProperty.csproj" />
   </ItemGroup>
 
 </Project>

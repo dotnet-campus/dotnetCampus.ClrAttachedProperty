@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 
-namespace dotnetCampus.ClrAttachedProperty
+namespace dotnetCampus.ClrNamedAttachedProperty
 {
     /// <summary>
     /// 给任意对象添加属性
     /// </summary>
-    public static class AttachedProperty
+    public static class NamedAttachedProperty
     {
         /// <summary>
         /// 设置属性
@@ -15,7 +14,7 @@ namespace dotnetCampus.ClrAttachedProperty
         /// <param name="obj"></param>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        public static void SetAttachedProperty(this object obj, string name, object value)
+        public static void SetNamedAttachedProperty(this object obj, string name, object value)
         {
             var dictionary = AttachePropertyList.GetValue(obj, key => new ConcurrentDictionary<string, object>());
             dictionary.AddOrUpdate(name, value, (s, o) => value);
@@ -27,7 +26,7 @@ namespace dotnetCampus.ClrAttachedProperty
         /// <param name="obj"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static object GetAttachedProperty(this object obj, string name)
+        public static object GetNamedAttachedProperty(this object obj, string name)
         {
             if (AttachePropertyList.TryGetValue(obj, out var dictionary))
             {

@@ -1,12 +1,12 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
-namespace dotnetCampus.ClrAttachedProperty.Tests
+namespace dotnetCampus.ClrNamedAttachedProperty.Tests
 {
     [TestClass]
-    public class AttachedPropertyTest
+    public class NamedAttachedPropertyTest
     {
         [ContractTestCase]
         public void SetGetProperty()
@@ -40,7 +40,7 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                         {
                             var obj = objectList[j];
                             var property = propertyList[j, n];
-                            obj.SetAttachedProperty(n.ToString(), property);
+                            obj.SetNamedAttachedProperty(n.ToString(), property);
                         }
                     });
 
@@ -60,7 +60,7 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                     {
                         for (int j = 0; j < 100; j++)
                         {
-                            Assert.AreSame(propertyList[n, j], objectList[n].GetAttachedProperty(j.ToString()));
+                            Assert.AreSame(propertyList[n, j], objectList[n].GetNamedAttachedProperty(j.ToString()));
                         }
                     });
 
@@ -81,12 +81,12 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var propertyName2 = "Foo2";
 
                 // Action
-                obj.SetAttachedProperty(propertyName1, propertyValue1);
-                obj.SetAttachedProperty(propertyName2, propertyValue2);
+                obj.SetNamedAttachedProperty(propertyName1, propertyValue1);
+                obj.SetNamedAttachedProperty(propertyName2, propertyValue2);
 
                 // Assert
-                Assert.AreSame(propertyValue1, obj.GetAttachedProperty(propertyName1));
-                Assert.AreSame(propertyValue2, obj.GetAttachedProperty(propertyName2));
+                Assert.AreSame(propertyValue1, obj.GetNamedAttachedProperty(propertyName1));
+                Assert.AreSame(propertyValue2, obj.GetNamedAttachedProperty(propertyName2));
             });
 
             "给一个不是空的对象设置属性，可以成功给此对象设置定义之外的属性".Test(() =>
@@ -96,10 +96,10 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
                 var propertyValue = new object();
                 var propertyName = "Foo";
                 // Action
-                obj.SetAttachedProperty(propertyName, propertyValue);
+                obj.SetNamedAttachedProperty(propertyName, propertyValue);
 
                 // Assert
-                Assert.AreSame(propertyValue, obj.GetAttachedProperty(propertyName));
+                Assert.AreSame(propertyValue, obj.GetNamedAttachedProperty(propertyName));
             });
         }
     }
