@@ -1,47 +1,37 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Runtime.CompilerServices;
 
 namespace dotnetCampus.ClrAttachedProperty
 {
     /// <summary>
-    /// 给任意对象添加属性
+    /// 可以附加到任意对象的附加属性
     /// </summary>
-    public static class AttachedProperty
+    /// <typeparam name="T"></typeparam>
+    public class AttachedProperty<T>
     {
         /// <summary>
-        /// 设置属性
+        /// 创建可以附加到任意对象的附加属性
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        public static void SetAttachedProperty(this object obj, string name, object value)
+        public AttachedProperty()
         {
-            var dictionary = AttachePropertyList.GetValue(obj, key => new ConcurrentDictionary<string, object>());
-            dictionary.AddOrUpdate(name, value, (s, o) => value);
+            InnerPropertyKey = Guid.NewGuid().ToString("N");
         }
 
         /// <summary>
-        /// 获取属性
+        /// 给 <paramref name="attachedObject"/> 附加 <paramref name="value"/> 值
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="name"></param>
+        /// <param name="attachedObject"></param>
+        /// <param name="value"></param>
+        public void SetValue(object attachedObject, T value) =>
+            NamedAttachedPropertyExtension.SetNamedAttachedProperty(attachedObject, InnerPropertyKey, value);
+
+        /// <summary>
+        /// 获取附加到 <paramref name="attachedObject"/> 的属性值
+        /// </summary>
+        /// <param name="attachedObject"></param>
         /// <returns></returns>
-        public static object GetAttachedProperty(this object obj, string name)
-        {
-            if (AttachePropertyList.TryGetValue(obj, out var dictionary))
-            {
-                if (dictionary.TryGetValue(name, out var value))
-                {
-                    return value;
-                }
-            }
+        public T GetValue(object attachedObject) =>
+            NamedAttachedPropertyExtension.GetNamedAttachedProperty<T>(attachedObject, InnerPropertyKey);
 
-            return null;
-        }
-
-        private static ConditionalWeakTable<object /*object*/, ConcurrentDictionary<string /*属性名*/, object /*Value*/>>
-            AttachePropertyList { get; } =
-            new ConditionalWeakTable<object, ConcurrentDictionary<string, object>>();
+        private string InnerPropertyKey { get; }
     }
 }

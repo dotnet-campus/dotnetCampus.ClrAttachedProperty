@@ -1,6 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
 namespace dotnetCampus.ClrAttachedProperty.Tests
@@ -11,96 +10,79 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
         [ContractTestCase]
         public void SetGetProperty()
         {
-            "一百个线程设置一百个元素，每个元素设置一百个属性，可以获取对这些元素的属性的值".Test(() =>
+            "业务方可以私有化附加属性对象，此时支持仅在业务内部使用附加属性".Test(() =>
             {
                 // Arrange
-                var objectList = new object[100];
-                for (int i = 0; i < 100; i++)
-                {
-                    objectList[i] = new object();
-                }
-
-                var propertyList = new object[100, 100];
-                for (int i = 0; i < 100; i++)
-                {
-                    for (int j = 0; j < 100; j++)
-                    {
-                        propertyList[i, j] = new object();
-                    }
-                }
+                var f1 = new F1();
+                var foo1List = new List<int>();
+                var foo2List = new List<int>();
+                var foo1 = new F2();
+                var foo2 = new F2();
 
                 // Action
-                var taskList = new List<Task>(100);
-                for (int i = 0; i < 100; i++)
-                {
-                    var n = i;
-                    var task = Task.Run(() =>
-                    {
-                        for (int j = 0; j < 100; j++)
-                        {
-                            var obj = objectList[j];
-                            var property = propertyList[j, n];
-                            obj.SetAttachedProperty(n.ToString(), property);
-                        }
-                    });
-
-                    taskList.Add(task);
-                }
-
-                Task.WaitAll(taskList.ToArray());
+                foo1.SetFoo(f1, foo1List);
+                foo2.SetFoo(f1, foo2List);
 
                 // Assert
-                taskList.Clear();
-
-                for (int i = 0; i < 100; i++)
-                {
-                    var n = i;
-
-                    var task = Task.Run(() =>
-                    {
-                        for (int j = 0; j < 100; j++)
-                        {
-                            Assert.AreSame(propertyList[n, j], objectList[n].GetAttachedProperty(j.ToString()));
-                        }
-                    });
-
-                    taskList.Add(task);
-                }
-
-                Task.WaitAll(taskList.ToArray());
+                Assert.AreSame(foo1List, foo1.GetFoo(f1));
+                Assert.AreSame(foo2List, foo2.GetFoo(f1));
             });
 
-            "给一个对象设置多个不同属性，可以成功拿到不同的属性的值".Test(() =>
+            "通过某个业务类的附加属性，可以设置或获取附加属性".Test(() =>
             {
                 // Arrange
                 var obj = new object();
-                var propertyValue1 = new object();
-                var propertyName1 = "Foo";
-
-                var propertyValue2 = new object();
-                var propertyName2 = "Foo2";
+                var fooList = new List<int>();
+                var age = 10;
 
                 // Action
-                obj.SetAttachedProperty(propertyName1, propertyValue1);
-                obj.SetAttachedProperty(propertyName2, propertyValue2);
+                F1.AttachedFooProperty.SetValue(obj, fooList);
+                F1.AgeProperty.SetValue(obj, age);
 
                 // Assert
-                Assert.AreSame(propertyValue1, obj.GetAttachedProperty(propertyName1));
-                Assert.AreSame(propertyValue2, obj.GetAttachedProperty(propertyName2));
+                Assert.AreSame(fooList, F1.AttachedFooProperty.GetValue(obj));
+                Assert.AreEqual(age, F1.AgeProperty.GetValue(obj));
             });
 
-            "给一个不是空的对象设置属性，可以成功给此对象设置定义之外的属性".Test(() =>
+            "两个不同的业务，使用不相同的附加属性对象，设置和获取的属性值不相同".Test(() =>
             {
                 // Arrange
                 var obj = new object();
-                var propertyValue = new object();
-                var propertyName = "Foo";
+                var age1 = 1000;
+                var age2 = 200;
+
                 // Action
-                obj.SetAttachedProperty(propertyName, propertyValue);
+                F1.AgeProperty.SetValue(obj, age1);
+                F2.AgeProperty.SetValue(obj, age2);
 
                 // Assert
-                Assert.AreSame(propertyValue, obj.GetAttachedProperty(propertyName));
+                Assert.AreEqual(age1, F1.AgeProperty.GetValue(obj));
+                Assert.AreEqual(age2, F2.AgeProperty.GetValue(obj));
             });
+        }
+
+        class F1
+        {
+            public static readonly AttachedProperty<List<int>> AttachedFooProperty = new AttachedProperty<List<int>>();
+
+            public static readonly AttachedProperty<int> AgeProperty = new AttachedProperty<int>();
+        }
+
+        class F2
+        {
+            public void SetFoo(F1 obj, List<int> fooList)
+            {
+                AttachedFooProperty.SetValue(obj, fooList);
+            }
+
+            public List<int> GetFoo(F1 obj)
+            {
+                return AttachedFooProperty.GetValue(obj);
+            }
+
+            private AttachedProperty<List<int>> AttachedFooProperty { get; } = new AttachedProperty<List<int>>();
+
+            public static readonly AttachedProperty<int> AgeProperty = new AttachedProperty<int>();
         }
     }
 }
