@@ -1,8 +1,8 @@
-# dotnetCampus.ClrNamedNamedAttachedProperty
+# dotnetCampus.ClrAttachedProperty
 
 | Build | NuGet |
 |--|--|
-|![](https://github.com/dotnet-campus/dotnetCampus.ClrNamedNamedAttachedProperty/workflows/.NET%20Core/badge.svg)|[![](https://img.shields.io/nuget/v/dotnetCampus.ClrNamedNamedAttachedProperty.svg)](https://www.nuget.org/packages/dotnetCampus.ClrNamedNamedAttachedProperty)|
+|![](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/workflows/.NET%20Core/badge.svg)|[![](https://img.shields.io/nuget/v/dotnetCampus.ClrAttachedProperty.svg)](https://www.nuget.org/packages/dotnetCampus.ClrAttachedProperty)|
 
 This library supports adding any property to any objects.
 
@@ -16,13 +16,13 @@ Two different libraries are provided for installation.
 .NET CLI:
 
 ```
-dotnet add package dotnetCampus.ClrNamedNamedAttachedProperty --version 1.0.0
+dotnet add package dotnetCampus.ClrAttachedProperty --version 1.0.0
 ```
 
 PackageReference:
 
 ```xml
-<PackageReference Include="dotnetCampus.ClrNamedNamedAttachedProperty" Version="1.0.0" />
+<PackageReference Include="dotnetCampus.ClrAttachedProperty" Version="1.0.0" />
 ```
 
 ### Install the [SourceYard](https://github.com/dotnet-campus/SourceYard) NuGet source code
@@ -30,13 +30,13 @@ PackageReference:
 .NET CLI:
 
 ```
-dotnet add package dotnetCampus.ClrNamedNamedAttachedProperty.Source --version 1.0.0
+dotnet add package dotnetCampus.ClrAttachedProperty.Source --version 1.0.0
 ```
 
 PackageReference:
 
 ```xml
-<PackageReference Include="dotnetCampus.ClrNamedNamedAttachedProperty.Source" Version="1.0.0">
+<PackageReference Include="dotnetCampus.ClrAttachedProperty.Source" Version="1.0.0">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
@@ -47,7 +47,7 @@ PackageReference:
 We can attach properies to any object by extension method
 
 ```csharp
-using dotnetCampus.ClrNamedNamedAttachedProperty;
+using dotnetCampus.ClrAttachedProperty;
 
         public void Foo(object obj, string propertyName, object objectValue)
         {
@@ -64,7 +64,7 @@ The `propertyName` will be shared in global. You need to be careful about all un
 We can define the AttachedProperty property to define a property that can be attached to object.
 
 ```csharp
-using dotnetCampus.ClrNamedNamedAttachedProperty;
+using dotnetCampus.ClrAttachedProperty;
 
         class F1
         {
@@ -127,6 +127,6 @@ As the code show, you can find we use two F2 to attach two list to the F1 object
 
 ## Contributing
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/dotnet-campus/dotnetCampus.ClrNamedNamedAttachedProperty/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/pulls)
 
-If you would like to contribute, feel free to create a [Pull Request](https://github.com/dotnet-campus/dotnetCampus.ClrNamedNamedAttachedProperty/pulls), or give us [Bug Report](https://github.com/dotnet-campus/dotnetCampus.ClrNamedNamedAttachedProperty/issues/new).
+If you would like to contribute, feel free to create a [Pull Request](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/pulls), or give us [Bug Report](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/issues/new).

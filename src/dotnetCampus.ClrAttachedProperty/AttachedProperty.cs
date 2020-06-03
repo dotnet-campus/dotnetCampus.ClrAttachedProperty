@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace dotnetCampus.ClrNamedAttachedProperty
+namespace dotnetCampus.ClrAttachedProperty
 {
     /// <summary>
     /// 可以附加到任意对象的附加属性

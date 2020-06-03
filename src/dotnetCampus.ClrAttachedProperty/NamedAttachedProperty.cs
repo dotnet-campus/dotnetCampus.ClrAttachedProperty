@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 
-namespace dotnetCampus.ClrNamedAttachedProperty
+namespace dotnetCampus.ClrAttachedProperty
 {
     /// <summary>
     /// 给任意对象添加属性

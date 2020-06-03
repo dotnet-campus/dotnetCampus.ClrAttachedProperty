@@ -1,8 +1,8 @@
-# dotnetCampus.ClrNamedNamedAttachedProperty
+# dotnetCampus.ClrAttachedProperty
 
 | Build | NuGet |
 |--|--|
-|![](https://github.com/dotnet-campus/dotnetCampus.ClrNamedNamedAttachedProperty/workflows/.NET%20Core/badge.svg)|[![](https://img.shields.io/nuget/v/dotnetCampus.ClrNamedNamedAttachedProperty.svg)](https://www.nuget.org/packages/dotnetCampus.ClrNamedNamedAttachedProperty)|
+|![](https://github.com/dotnet-campus/dotnetCampus.ClrAttachedProperty/workflows/.NET%20Core/badge.svg)|[![](https://img.shields.io/nuget/v/dotnetCampus.ClrAttachedProperty.svg)](https://www.nuget.org/packages/dotnetCampus.ClrAttachedProperty)|
 
 给任意对象附加上任意额外的属性
 
@@ -15,13 +15,13 @@
 .NET CLI:
 
 ```
-dotnet add package dotnetCampus.ClrNamedNamedAttachedProperty --version 1.0.0
+dotnet add package dotnetCampus.ClrAttachedProperty --version 1.0.0
 ```
 
 PackageReference:
 
 ```xml
-<PackageReference Include="dotnetCampus.ClrNamedNamedAttachedProperty" Version="1.0.0" />
+<PackageReference Include="dotnetCampus.ClrAttachedProperty" Version="1.0.0" />
 ```
 
 ### 安装源代码包
@@ -30,13 +30,13 @@ PackageReference:
 .NET CLI:
 
 ```
-dotnet add package dotnetCampus.ClrNamedNamedAttachedProperty.Source --version 1.0.0
+dotnet add package dotnetCampus.ClrAttachedProperty.Source --version 1.0.0
 ```
 
 PackageReference:
 
 ```xml
-<PackageReference Include="dotnetCampus.ClrNamedNamedAttachedProperty.Source" Version="1.0.0">
+<PackageReference Include="dotnetCampus.ClrAttachedProperty.Source" Version="1.0.0">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
@@ -47,7 +47,7 @@ PackageReference:
 可以给任意的对象附加任意类型的属性，同时可以从对象里面获取附加的属性
 
 ```csharp
-using dotnetCampus.ClrNamedNamedAttachedProperty;
+using dotnetCampus.ClrAttachedProperty;
 
         public void Foo(object obj, string propertyName, object objectValue)
         {
@@ -71,7 +71,7 @@ using dotnetCampus.ClrNamedNamedAttachedProperty;
 使用方法如下面代码
 
 ```csharp
-using dotnetCampus.ClrNamedNamedAttachedProperty;
+using dotnetCampus.ClrAttachedProperty;
 
         class F1
         {

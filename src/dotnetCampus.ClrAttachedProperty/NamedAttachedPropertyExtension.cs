@@ -1,4 +1,4 @@
-﻿namespace dotnetCampus.ClrNamedAttachedProperty
+﻿namespace dotnetCampus.ClrAttachedProperty
 {
     /// <summary>
     /// 给任意对象添加属性的扩展支持

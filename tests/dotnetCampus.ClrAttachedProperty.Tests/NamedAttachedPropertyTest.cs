@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 
-namespace dotnetCampus.ClrNamedAttachedProperty.Tests
+namespace dotnetCampus.ClrAttachedProperty.Tests
 {
     [TestClass]
     public class NamedAttachedPropertyTest
