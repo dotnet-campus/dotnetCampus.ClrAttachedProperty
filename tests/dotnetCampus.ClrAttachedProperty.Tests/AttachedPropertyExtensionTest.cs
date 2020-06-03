@@ -10,7 +10,21 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
         [ContractTestCase]
         public void SetGetProperty()
         {
-            "设置可空值类型，可以获取到相对对象".Test(() =>
+            "设置可空值类型，值是空，可以获取到空对象".Test(() =>
+            {
+                // Arrange
+                var obj = new object();
+                int? ageProperty = null;
+                var name = "age";
+
+                // Action
+                obj.SetAttachedProperty(name, ageProperty);
+
+                // Assert
+                Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int?>(name));
+            });
+
+            "设置可空值类型，值不是空，可以获取到相对对象".Test(() =>
             {
                 // Arrange
                 var obj = new object();
@@ -22,7 +36,6 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
 
                 // Assert
                 Assert.AreEqual(ageProperty, obj.GetAttachedProperty<int?>(name));
-                Assert.IsNull(obj.GetAttachedProperty<int>(name));
             });
 
             "两个属性名相同，但是类型不相同的属性，可以独立存取和读取".Test(() =>
