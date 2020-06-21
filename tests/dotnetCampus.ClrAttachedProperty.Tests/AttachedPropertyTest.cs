@@ -10,6 +10,51 @@ namespace dotnetCampus.ClrAttachedProperty.Tests
         [ContractTestCase]
         public void SetGetProperty()
         {
+            "传入默认值的附加属性，对于不同的对象，不同类的不同对象，在没有设置属性时，返回相同的默认值".Test(() =>
+            {
+                // Arrange
+                var f1 = new F1();
+                var f2 = new F1();
+
+                var foo1 = new F2();
+                var defaultValue = new List<int>();
+
+                // Action
+                var attachedProperty = new AttachedProperty<List<int>>(defaultValue);
+
+                // Assert
+                Assert.AreSame(defaultValue, attachedProperty.GetValue(f1));
+                Assert.AreSame(defaultValue, attachedProperty.GetValue(f2));
+                Assert.AreSame(defaultValue, attachedProperty.GetValue(foo1));
+            });
+
+            "传入默认值，如果有设置对应属性，不返回默认值".Test(() =>
+            {
+                // Arrange
+                var f1 = new F1();
+                var defaultValue = new List<int>();
+                var attachedProperty = new AttachedProperty<List<int>>(defaultValue);
+
+                // Action
+                attachedProperty.SetValue(f1, new List<int>());
+
+                // Assert
+                Assert.AreNotSame(defaultValue, attachedProperty.GetValue(f1));
+            });
+
+            "传入默认值，如果没有设置对应属性，返回默认值".Test(() =>
+            {
+                // Arrange
+                var f1 = new F1();
+                var defaultValue = new List<int>();
+
+                // Action
+                var attachedProperty = new AttachedProperty<List<int>>(defaultValue);
+
+                // Assert
+                Assert.AreSame(defaultValue, attachedProperty.GetValue(f1));
+            });
+
             "业务方可以私有化附加属性对象，此时支持仅在业务内部使用附加属性".Test(() =>
             {
                 // Arrange

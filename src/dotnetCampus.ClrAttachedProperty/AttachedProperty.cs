@@ -16,6 +16,11 @@ namespace dotnetCampus.ClrAttachedProperty
             InnerPropertyKey = Guid.NewGuid().ToString("N");
         }
 
+        public AttachedProperty(T defaultValue) : this()
+        {
+            _defaultValue = defaultValue;
+        }
+
         /// <summary>
         /// 给 <paramref name="attachedObject"/> 附加 <paramref name="value"/> 值
         /// </summary>
@@ -30,8 +35,10 @@ namespace dotnetCampus.ClrAttachedProperty
         /// <param name="attachedObject"></param>
         /// <returns></returns>
         public T GetValue(object attachedObject) =>
-            NamedAttachedPropertyExtension.GetNamedAttachedProperty<T>(attachedObject, InnerPropertyKey);
+            NamedAttachedPropertyExtension.GetNamedAttachedProperty<T>(attachedObject, InnerPropertyKey, _defaultValue);
 
         private string InnerPropertyKey { get; }
+
+        private readonly T _defaultValue = default;
     }
 }
