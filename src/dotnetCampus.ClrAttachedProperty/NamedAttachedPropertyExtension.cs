@@ -24,12 +24,19 @@
         /// <param name="name"></param>
         /// <returns></returns>
         public static T GetNamedAttachedProperty<T>(this object obj, string name)
+            => GetNamedAttachedProperty(obj, name, default(T));
+
+        /// <summary>
+        /// 获取属性，实际尝试获取的是 ${typeof(<typeparamref name="T"/>).FullName}.{<paramref name="name"/>} 属性
+        /// </summary>
+        /// <returns></returns>
+        public static T GetNamedAttachedProperty<T>(this object obj, string name, T defaultValue)
         {
             var actualName = $"{typeof(T).FullName}.{name}";
             var attachedProperty = NamedAttachedProperty.GetNamedAttachedProperty(obj, actualName);
             if (attachedProperty != null)
             {
-                return (T)attachedProperty;
+                return (T) attachedProperty;
             }
 
             // 如果是空，需要考虑兼容，尝试获取 name 是否存在
@@ -40,7 +47,7 @@
                 return t;
             }
 
-            return default;
+            return defaultValue;
         }
     }
 }
