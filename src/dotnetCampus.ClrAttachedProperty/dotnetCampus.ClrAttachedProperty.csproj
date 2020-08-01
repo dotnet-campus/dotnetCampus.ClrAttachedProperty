@@ -25,9 +25,11 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
-
+    </ItemGroup>
+    
+    <ItemGroup>
         <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19099-alpha">
             <PrivateAssets>All</PrivateAssets>
         </PackageReference>
